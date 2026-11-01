@@ -225,3 +225,23 @@ def test_build_demo_produces_a_consistent_warehouse(tmp_path):
     assert con.execute("SELECT count(*) FROM dq_issue WHERE check_name = 'partner_sum_vs_world'").fetchone()[0] == 0
     assert con.execute("SELECT count(*) FROM fct_mirror_monthly").fetchone()[0] > 0
     assert con.execute("SELECT count(*) FROM forecast_summary").fetchone()[0] > 0
+
+
+# ---------------------------------------------------------------- health check script
+def _run_health(monkeypatch, capsys):
+    monkeypatch.setattr(sys, "argv", ["health_check.py"])
+    with pytest.raises(SystemExit) as exc:
+        runpy.run_path(str(config.ROOT / "scripts" / "health_check.py"), run_name="__main__")
+    return exc.value.code, capsys.readouterr().out
+
+
+def test_health_check_exit_codes(tmp_path, monkeypatch, capsys):
+    monkeypatch.delenv("RICE_MARKET_MODE", raising=False)
+    monkeypatch.setattr(config, "DB_PATH", tmp_path / "none_real.duckdb")
+    monkeypatch.setattr(config, "DEMO_DB_PATH", tmp_path / "none_demo.duckdb")
+    code, out = _run_health(monkeypatch, capsys)
+    assert code == 2 and "no warehouse found" in out
+    demo.build_demo(tmp_path / "raw", tmp_path / "demo.duckdb")
+    monkeypatch.setattr(config, "DEMO_DB_PATH", tmp_path / "demo.duckdb")
+    code, out = _run_health(monkeypatch, capsys)
+    assert code == 0 and '"mode": "demo"' in out

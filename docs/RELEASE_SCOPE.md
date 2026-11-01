@@ -32,7 +32,7 @@ private research project, and it is not a data release.
 | Derived result tables built from restricted or unconfirmed datasets | None shipped; the report script of the private project is not included |
 | **Automated MEF / Data EF website downloader**, dataset identifiers and endpoint URLs | Removed; `test_no_automated_mef_retrieval_in_tracked_files` |
 | Hosted or deployed dashboards | Not deployed; the app is configured for localhost only |
-| Private project history | This repository starts from a single fresh commit; the private repository's history was not rewritten and is not included |
+| Private project history | This repository has a fresh history of its own; the private repository's history was not rewritten and is not included |
 | Permission-request drafts and the private audit working notes | Remain in the private project |
 
 ## What is deliberately different from the private project

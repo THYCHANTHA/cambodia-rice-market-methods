@@ -97,7 +97,7 @@ a user's *outputs* are covered depends on what they publish. The FAQ does not ad
 | No finding phrases | Denylist of finding wording and period labels searched across tracked files and history |
 | No MEF endpoint or identifiers | Pattern scan and automated test |
 | No credentials, e-mail addresses or local paths | Pattern scans and automated test |
-| Fresh history | Single initial commit; the private repository's history was not rewritten or included |
+| Fresh history | A new repository with its own short history; no commit or file history from the private repository is included, and the private repository was not rewritten |
 
 ## 7. Outstanding
 
