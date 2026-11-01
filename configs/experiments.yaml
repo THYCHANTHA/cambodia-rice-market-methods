@@ -1,0 +1,16 @@
+# Forecast-evaluation settings. Edit freely; nothing here depends on any particular dataset.
+#
+# series      warehouse series ids to evaluate (see dim_series). Default: every series with at least `min_months`
+#             gap-free reported months.
+# start / end optional YYYY-MM-01 bounds for a series. If omitted, the longest gap-free run of reported months is used.
+#             Choose bounds from your own coverage audit (data quality page), not from forecast results.
+# min_train   shortest training window (months); horizons are months ahead.
+min_train: 24
+horizons: [1, 3, 6]
+min_months: 36
+series: []
+# Example of an explicit entry:
+# series:
+#   - series_id: comtrade_100630
+#     start: 2020-01-01
+#     end: 2024-12-01

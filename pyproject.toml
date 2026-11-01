@@ -1,0 +1,29 @@
+[project]
+name = "cambodia-rice-market-methods"
+version = "0.1.0.dev0"
+description = "Methods and code for analysing rice export statistics: ingestion, validation, reconciliation, analytics, forecast evaluation (no data included)"
+requires-python = ">=3.11"
+dependencies = ["requests", "PyYAML", "pandas", "numpy", "pyarrow", "duckdb", "openpyxl", "statsmodels", "scipy", "plotly", "streamlit"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*" = ["E501"]
+"tests/*" = ["E501"]
+"app/*" = ["E501"]

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.env
+# All data are generated or supplied locally and never committed: provider terms (MEF, UN Comtrade, World Bank) apply.
+data/
+reports/
+*.duckdb
+*.egg-info/
+build/
